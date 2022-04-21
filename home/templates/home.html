@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>{{ page_name }}</title>
+{% endblock %}
+{% block home %}
+    {% include "home/page_hero.html" %}
+    {% include "home/mt_5.html" %}
+    {% include "home/mobile_preview.html" %}
+    {% include "home/mobster.html" %}
+    {% include "home/plan.html" %}
+    {% include "home/stories.html" %}
+    {% include "home/contact.html" %}
+{% endblock %}

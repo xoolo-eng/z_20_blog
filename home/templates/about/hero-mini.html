@@ -1,0 +1,18 @@
+{% load static %}
+<div class="page-hero-section bg-image hero-mini" style="background-image: url({% static 'img/hero_mini.svg' %});">
+    <div class="hero-caption">
+        <div class="container fg-white h-100">
+            <div class="row justify-content-center align-items-center text-center h-100">
+                <div class="col-lg-6">
+                    <h3 class="mb-4 fw-medium">About Us</h3>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
+                            <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">About</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
