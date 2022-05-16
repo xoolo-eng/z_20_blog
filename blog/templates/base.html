@@ -21,8 +21,16 @@
     {% block top_scripts %}{% endblock %}
 </head>
 <body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% include "base/nav.html" %}
 {% block home %}{% endblock %}
+{% block user %}{% endblock %}
 {% block footer %}
     {% include "base/footer.html" %}
 {% endblock %}

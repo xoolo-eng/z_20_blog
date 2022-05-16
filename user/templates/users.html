@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load blog_lib %}
+{% block user %}
+    <main class="bg-light">
+        <div class="page-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md col-lg my-3 wow fadeInUp">
+                        <div class="card-page">
+                            <h3 class="fw-normal">Accounts</h3>
+                            <ul>
+                                {% for usr in page_obj %}
+                                    <li>{{ usr.username }} | {{ usr.last_login }} |
+                                        {{ usr.phone }}{% if usr.is_superuser %}
+                                            | Superuser{% endif %} </li>
+                                {% endfor %}
+                            </ul>
+                        {% if page_obj.has_previous %}
+                            <a href="{% url 'accounts_page' %}?page=1">First</a>
+                            <a href="{% url 'accounts_page' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+                            {% for num_page in page_obj.paginator.num_pages|range:0 %}
+                                <a href="{% url 'accounts_page' %}?page={{ num_page|add:1 }}">{{ num_page|add:1 }}</a>
+                            {% endfor %}
+                        {% if page_obj.has_next %}
+                            <a href="{% url 'accounts_page' %}?page={{ page_obj.next_page_number }}">Next</a>
+                            <a href="{% url 'accounts_page' %}?page={{ page_obj.paginator.num_pages }}">Last</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

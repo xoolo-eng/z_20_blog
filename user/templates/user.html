@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load blog_lib %}
+{% block user %}
+    <main class="bg-light">
+        <div class="page-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md col-lg my-3 wow fadeInUp">
+                        <div class="card-page">
+                            <h3 class="fw-normal">Account {% if user.full_name %}{{ user.full_name }}{% else %}{{ user.username }}{% endif %} </h3>
+                            <p>
+                                {{ user.last_login }}<br>{{ user.is_active }}
+                            </p>
+                        <ul>
+
+                            {% for user_permission in user.user_permissions.all %}
+                            <li>
+                            {{ user_permission.name }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -11,26 +11,42 @@
 
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-lg-5 mt-3 mt-lg-0">
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Home</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item active" href="{% url 'home_page' %}">Homepage 1</a>
-                        <a class="dropdown-item" href="index-2.html">Homepage 2</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home_page' %}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about_page' %}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item active" href="#">All posts</a>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="updates.html">What's New</a>
+                    <a class="nav-link" href="{% url 'contacts_page' %}">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login_page' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signin_page' %}">Sign In</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_page' %}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout_page' %}">Logout</a>
+                    </li>
+                {% endif %}
+                {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Admin</a>
+                    </li>
+                {% endif %}
             </ul>
             <div class="ml-auto my-2 my-lg-0">
                 <button class="btn btn-dark rounded-pill">Download Now</button>

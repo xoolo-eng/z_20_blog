@@ -1,0 +1,35 @@
+<div class="col-md-6 col-lg-5 my-3 wow fadeInUp">
+    <div class="card-page">
+        <h3 class="fw-normal">Get in touch</h3>
+        <form method="POST" class="mt-3">
+            {% if feedback_form.non_field_errors %}
+                <ul>
+                    {% for error in feedback_form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+
+                </ul>
+            {% endif %}
+            {% csrf_token %}
+            {% for input in feedback_form %}
+                <div class="form-group">
+                    <label for="{{ input.name }}" class="fw-medium fg-grey">{{ input.label }}</label>
+                    {{ input }}
+                    {% if input.errors %}
+                        <ul>
+                        {% for error in input.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <p>*Your information will never be shared with any third party.</p>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
